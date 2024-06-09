@@ -1,0 +1,44 @@
+ALGORITHM AnalyzeSentence
+    // Declare variables
+    VARIABLES
+        sentence_length, word_count, vowel_count : INTEGER
+        character : CHARACTER
+        vowels : STRING
+        start_of_word : BOOLEAN
+
+    // Initialize variables
+    sentence_length <- 0
+    word_count <- 0
+    vowel_count <- 0
+    vowels <- "aeiouAEIOU"
+    start_of_word <- TRUE
+
+    // Read characters one by one until a period is encountered
+    REPEAT
+        READ character
+
+        // Increment the sentence length counter
+        sentence_length <- sentence_length + 1
+        
+        // Check if the character is a vowel
+        IF character IN vowels THEN
+            vowel_count <- vowel_count + 1
+        END IF
+
+        // Check if the character is a space
+        IF character = ' ' THEN
+            start_of_word <- TRUE
+        ELSE
+            IF start_of_word = TRUE THEN
+                word_count <- word_count + 1
+                start_of_word <- FALSE
+            END IF
+        END IF
+        
+    UNTIL character = '.'
+
+    // Display the results
+    DISPLAY "Sentence length: ", sentence_length
+    DISPLAY "Number of words: ", word_count
+    DISPLAY "Number of vowels: ", vowel_count
+END ALGORITHM
